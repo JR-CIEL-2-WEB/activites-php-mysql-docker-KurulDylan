@@ -1,11 +1,11 @@
 <?php 
 
-function moyenne($notes) {
-    $somme = 0;
-    for ($i = 0; $i < count($notes); $i++) {
-        $somme += $notes[$i];
-    }
-    return $somme / count($notes);
-}
+include "statistique.php";
 
-echo moyenne([10, 12, 14, 16, 18]);
+
+$tab = [10, 12, 14, 16, 18];
+echo "La moyenne des notes est : " .moyenne($tab);
+
+
+
+?>
