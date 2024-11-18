@@ -21,8 +21,7 @@ function tri_selection($tab) {
 $tab = [10, 12, 14, 1, 8];
 
 
-echo "tableau trié : " . tri_selection($t) . "</br>";
-echo "Test";
+echo "Tableau trié : " . implode(", ", tri_selection($tab)) . "<br>";
 
 
 ?>
