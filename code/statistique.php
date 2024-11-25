@@ -1,5 +1,5 @@
 <?php 
-
+include "tri_selection.php";
 function moyenne($notes) {
     $somme = 0;
     for ($i = 0; $i < count($notes); $i++) {
@@ -8,7 +8,7 @@ function moyenne($notes) {
     return $somme / count($notes);
 }
 function mediane ($notes) {
-    sort($notes); ## il faut remplacer par  un tri selection  par la suite 
+    tri_selection($notes); ## il faut remplacer par  un tri selection  par la suite 
     $milieu = count($notes) / 2;
     if (count($notes) % 2 == 0) {
         return ($notes[$milieu - 1] + $notes[$milieu]) / 2;
