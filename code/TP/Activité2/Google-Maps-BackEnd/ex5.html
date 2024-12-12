@@ -37,13 +37,13 @@
     let flightPlanCoordinates = [];
     let allCourses = [];
 
-    // Charger les données JSON lorsque la page se charge
+    // Charger les noms des courses pour le menu déroulant
     window.onload = function() {
-        fetch('courses.json')  // Charger les données à partir du fichier JSON
+        fetch('courses.json')  // Charger uniquement les noms des courses
             .then(response => response.json())
             .then(data => {
-                allCourses = data;  // Stocker toutes les courses dans une variable
-                fillDropdown();     // Remplir le menu déroulant avec les courses
+                allCourses = data;
+                fillDropdown(); // Remplir le menu déroulant avec les noms des courses
             })
             .catch(error => console.log('Erreur:', error));
     };
@@ -63,31 +63,30 @@
     function loadSelectedCourse() {
         const select = document.getElementById('courseSelect');
         const selectedCourseId = parseInt(select.value);
-        
-        if (!selectedCourseId) return;  // Si aucune course n'est sélectionnée, ne rien faire
 
-        let selectedCourse = null;
+        if (!selectedCourseId) return; // Si aucune course n'est sélectionnée, ne rien faire
 
-        // Trouver la course sélectionnée
-        for (let i = 0; i < allCourses.length; i++) {
-            if (allCourses[i].id === selectedCourseId) {
-                selectedCourse = allCourses[i];
-                break;
-            }
-        }
+        // Charger les données de la course sélectionnée via course.php
+        fetch(`courses.php?id=${selectedCourseId}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erreur lors du chargement de la course');
+                }
+                return response.json();
+            })
+            .then(selectedCourse => {
+                flightPlanCoordinates = []; // Réinitialiser les coordonnées
 
-        if (selectedCourse) {
-            flightPlanCoordinates = [];  // Réinitialiser les coordonnée
+                // Ajouter les marqueurs de la course
+                for (let i = 0; i < selectedCourse.markers.length; i++) {
+                    let marker = selectedCourse.markers[i];
+                    flightPlanCoordinates.push({ lat: marker.lat, lng: marker.lng });
+                }
 
-            // Ajouter les marqueurs de la course
-            for (let i = 0; i < selectedCourse.markers.length; i++) {
-                let marker = selectedCourse.markers[i];
-                flightPlanCoordinates.push({ lat: marker.lat, lng: marker.lng });
-            }
-
-            // Afficher la carte avec les nouveaux marqueurs
-            initMap();
-        }
+                // Afficher la carte avec les nouveaux marqueurs
+                initMap();
+            })
+            .catch(error => console.error('Erreur:', error));
     }
 
     // Initialiser la carte
