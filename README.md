@@ -2,7 +2,7 @@
 
 ## Description
 
-Ce dépôt contient les fichiers nécessaires pour exécuter un serveur web Nginx avec PHP-FPM. Le serveur Nginx écoutera sur le port `8092` et servira le contenu du dossier `ExerciceFormulaire` situé dans le répertoire racine du dépôt.
+Ce dépôt contient les fichiers nécessaires pour exécuter un serveur web Nginx avec PHP-FPM. Le serveur Nginx écoutera sur le port `8092` et servira le contenu du dossier `code` situé dans le répertoire racine du dépôt.
 
 ## Structure du dépôt
 
