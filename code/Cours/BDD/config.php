@@ -1,9 +1,9 @@
 <?php
 // Informations de connexion à la base de données
-$host = '127.0.0.1';        // Hôte de la base de données (local si tu travailles en local)
+$host = 'mysql';        // Hôte de la base de données (local si tu travailles en local)
 $dbname = 'appdb'; // Remplace par le nom de ta base de données
-$username = 'root';        // Nom d'utilisateur MySQL
-$password = 'root';        // Mot de passe MySQL
+$username = 'eleve';        // Nom d'utilisateur MySQL
+$password = 'eleve';        // Mot de passe MySQL
 
 try {
     // Création de la connexion avec PDO
