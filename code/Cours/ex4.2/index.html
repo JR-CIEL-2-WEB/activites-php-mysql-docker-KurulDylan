@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tri Sélection et Médiane</title>
+    </head>
+    <body>
+        <h1>Tri Sélection</h1>
+        <h3>Saisie des éléments du tableau</h3>
+        <h4>Envoi du tableau via AJAX</h4>
+        <h4 id="response"></h4>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script>
+            let a = [];
+            let nbr = 0;
+            do {
+                nbr = Number(prompt('Saisis un nombre > 0 (ou un nombre négatif pour arrêter)'));
+                if (nbr > 0) {
+                    a.push(nbr);
+                }
+            } while (nbr > 0);
+
+            $.ajax({
+                url: `main.php?list=${JSON.stringify(a)}`,
+                type: 'GET',
+                success: function(response) {
+                    response = JSON.parse(response);
+                    let htmlH4 = document.getElementById('response');
+                    htmlH4.innerHTML = `Médiane = ${response.median}`;
+                },
+                error: function(error) {
+                    console.error('Erreur lors de l\'appel AJAX : ', error);
+                }
+            });
+        </script>
+    </body>
+</html>
