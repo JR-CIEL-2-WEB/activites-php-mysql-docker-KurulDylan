@@ -1,7 +1,7 @@
 <?php 
 
 include "statistique.php";
-include"ex1.php";
+include "ex1.php";
 
 $tab = [10, 12, 14, 16, 18];
 echo "La moyenne des notes est : " .moyenne($tab);
