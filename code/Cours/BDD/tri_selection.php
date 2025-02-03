@@ -33,12 +33,5 @@ function tri_selection_reference(&$t) {
         }
     }
 }
-$tab = [10, 12, 14, 1, 8];
-
-$t = [2,8,4,8,1,2];
-tri_selection_reference($t);
-echo "Tableau trié : " . implode(", ", tri_selection($tab)) . "<br>";
-echo "Tableau trié reffff : " . implode(", ", $t) . "<br>";
-
 
 ?>

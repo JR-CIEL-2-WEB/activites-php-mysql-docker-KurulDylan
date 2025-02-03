@@ -1,8 +1,8 @@
 <?php
+include "config.php";
 include "mediane.php";
 include "moyenne.php";
-include "tri_selection.php";
-include "config.php";
+require_once 'tri_selection.php';
 
 try {
     // Connexion à la base de données
@@ -24,9 +24,9 @@ try {
     $moyenne = moyenne($salaires);
     $mediane = mediane($salaires);
     $salaires_tries = $salaires; // Copier les salaires pour le tri
-    tri_selection($salaires_tries);
-
-
+    tri_selection_reference($salaires_tries);
+    
+    
     // Afficher les résultats
     echo "Moyenne des salaires : $moyenne<br>";
     echo "Médiane des salaires : $mediane<br>";
